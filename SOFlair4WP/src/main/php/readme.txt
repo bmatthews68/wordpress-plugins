@@ -11,9 +11,9 @@ Provides a widget for adding a Stack Overflow Flair badge to a WordPress blog.
 == Description ==
 
 The Stack Overflow Flair for WordPress plugin allows you to add your Stack Overflow user flair badge
-to you WordPress blog.
+to your WordPress blog.
 
-== Installation =
+== Installation ==
 
 1. Upload the to your WordPress blog
 2. Active the plugin
