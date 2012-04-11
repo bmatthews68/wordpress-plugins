@@ -42,8 +42,8 @@ class SOFlair4WP_Widget extends WP_Widget
 		$soflair4wp_userid = apply_filters('soflair4wp_userid', $instance['userid']);
 		$soflair4wp_username = apply_filters('soflair4wp_username', $instance['username']);
 		$soflair4wp_theme = apply_filters('soflair4wp_theme', $instance['theme']);
-    	echo $before_widget;
-    	include(WP_PLUGIN_DIR . '/SOFlair4WP/view/widget.php');
+		echo $before_widget;
+		include(WP_PLUGIN_DIR . '/SOFlair4WP/view/widget.php');
    		echo $after_widget;
 	}
 
