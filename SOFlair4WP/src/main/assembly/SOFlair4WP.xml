@@ -18,6 +18,7 @@
 		<fileSet>
 			<outputDirectory>/</outputDirectory>
 			<directory>src/main/php</directory>
+			<filtered>true</filtered>
 		</fileSet>
 	</fileSets>
 

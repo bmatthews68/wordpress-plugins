@@ -1,13 +1,13 @@
 <?php
 /*
-Plugin Name: Stack Overflow Flair for Wordpress
+Plugin Name: Stack Overflow Flair for WordPress
 Plugin URI: http://btmatthews.com/soflair4wp
-Description: Display your Stack Overflow Flair on your Wordpress blog
+Description: Display your Stack Overflow Flair on your WordPress blog
 Version: v1.0.0-SNAPSHOT
 Author: Brian Matthews
 Author URI: http://brianmatthews.me
 Author Email: brian@btmatthews.com
-License: GPLv2
+License: GPLv2 or later
 */
 /*  Copyright 2012  Brian Matthews  (email : brian@btmatthews.com)
 
@@ -32,15 +32,15 @@ class SOFlair4WP_Widget extends WP_Widget
 		parent::__construct(
 			'SOFlair4WP',
 			'Stack Overflow Flair',
-			array('description' => __('Display your Stack Overflow Flair on your Wordpress blog', 'textdomain'))
+			array('description' => __('Display your Stack Overflow Flair on your WordPress blog', 'textdomain'))
 		);
 	}
 	
 	function widget($args, $instance)
 	{
   		extract($args); 
-		$soflair4wp_userid = apply_filters('soflair4wp_userid', $instance['userid']);
-		$soflair4wp_username = apply_filters('soflair4wp_username', $instance['username']);
+		$soflair4wp_userid = apply_filters('soflair4wp_userid', get_option('soflair4wp_userid'));
+		$soflair4wp_username = apply_filters('soflair4wp_username', get_option('soflair4wp_username'));
 		$soflair4wp_theme = apply_filters('soflair4wp_theme', $instance['theme']);
 		echo $before_widget;
 		include(WP_PLUGIN_DIR . '/SOFlair4WP/view/widget.php');
@@ -50,30 +50,12 @@ class SOFlair4WP_Widget extends WP_Widget
 	function update($new_instance, $old_instance)
 	{
 		$instance = $old_instance;
-		$instance['userid'] = strip_tags($new_instance['userid']);
-		$instance['username'] = strip_tags($new_instance['username']);
 		$instance['theme'] = strip_tags($new_instance['theme']);
 		return $instance;
 	}
 	
 	function form($instance)
 	{
-		if (isset($instance['userid']))
-		{
-			$soflair4wp_userid = $instance['userid'];
-		}
-		else
-		{
-			$soflair4wp_userid = '';
-		}
-		if (isset($instance['username']))
-		{
-			$soflair4wp_username = $instance['username'];
-		}
-		else
-		{
-			$soflair4wp_username = '';
-		}
 		if (isset($instance['theme']))
 		{
 			$soflair4wp_theme = $instance['theme'];
@@ -86,5 +68,26 @@ class SOFlair4WP_Widget extends WP_Widget
 	}
 }
 
+function SOFlair4WP_register_settings()
+{
+	register_setting('SOFlair4WP', 'soflair4wp_userid');
+	register_setting('SOFlair4WP', 'soflair4wp_username');	
+}
+
+function SOFlair4WP_create_menu()
+{
+	add_options_page('Stack Overflow Flair Settings', 'Stack Overflow Flair', 'manage_options', 'SOFlair4WP', 'SOFlair4WP_settings_page');
+}
+
+function SOFlair4WP_settings_page()
+{
+	include(WP_PLUGIN_DIR . '/SOFlair4WP/view/admin.php');	
+}
+
 add_action('widgets_init', create_function('', 'register_widget("SOFlair4WP_Widget");'));
+if (is_admin())
+{
+	add_action('admin_init', 'SOFlair4WP_register_settings');
+	add_action('admin_menu', 'SOFlair4WP_create_menu');
+}
 ?>
