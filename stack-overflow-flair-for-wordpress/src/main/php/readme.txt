@@ -1,6 +1,6 @@
 === SOFlair4WP ===
 Contributors: bmatthews68
-Tags: StackOverflow
+Tags: stackoverflow,flair,widget
 Requires at least: 3.3.1
 Tested up to: 3.3.1
 Stable tag: ${project.version}

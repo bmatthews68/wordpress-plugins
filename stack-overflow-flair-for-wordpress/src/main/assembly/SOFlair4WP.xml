@@ -8,7 +8,7 @@
 
 	<id>plugin</id>
 
-	<baseDirectory>/SOFlair4WP</baseDirectory>
+	<baseDirectory>/stack-overflow-flair-for-wordpress</baseDirectory>
 
 	<formats>
 		<format>zip</format>

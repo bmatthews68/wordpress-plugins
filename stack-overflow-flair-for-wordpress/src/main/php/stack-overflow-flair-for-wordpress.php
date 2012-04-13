@@ -3,7 +3,7 @@
 Plugin Name: Stack Overflow Flair for WordPress
 Plugin URI: http://btmatthews.com/soflair4wp
 Description: Display your Stack Overflow Flair on your WordPress blog
-Version: v1.0.0-SNAPSHOT
+Version: ${project.version}
 Author: Brian Matthews
 Author URI: http://brianmatthews.me
 Author Email: brian@btmatthews.com
@@ -43,7 +43,7 @@ class SOFlair4WP_Widget extends WP_Widget
 		$soflair4wp_username = apply_filters('soflair4wp_username', get_option('soflair4wp_username'));
 		$soflair4wp_theme = apply_filters('soflair4wp_theme', $instance['theme']);
 		echo $before_widget;
-		include(WP_PLUGIN_DIR . '/SOFlair4WP/view/widget.php');
+		include(WP_PLUGIN_DIR . '/${project.artifactId}/view/widget.php');
    		echo $after_widget;
 	}
 
@@ -64,7 +64,7 @@ class SOFlair4WP_Widget extends WP_Widget
 		{
 			$soflair4wp_theme = 'default';
 		}
-		include(WP_PLUGIN_DIR . '/SOFlair4WP/view/form.php');
+		include(WP_PLUGIN_DIR . '/${project.artifactId}/view/form.php');
 	}
 }
 
@@ -81,7 +81,7 @@ function SOFlair4WP_create_menu()
 
 function SOFlair4WP_settings_page()
 {
-	include(WP_PLUGIN_DIR . '/SOFlair4WP/view/admin.php');	
+	include(WP_PLUGIN_DIR . '/${project.artifactId}/view/admin.php');	
 }
 
 add_action('widgets_init', create_function('', 'register_widget("SOFlair4WP_Widget");'));
