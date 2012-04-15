@@ -8,7 +8,7 @@
 
 	<id>plugin</id>
 
-	<baseDirectory>/stack-overflow-flair-for-wordpress</baseDirectory>
+	<baseDirectory>/${project.artifactId}</baseDirectory>
 
 	<formats>
 		<format>zip</format>

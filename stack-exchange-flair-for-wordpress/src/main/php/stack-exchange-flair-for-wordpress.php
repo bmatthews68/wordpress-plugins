@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: ${project.artifactId}
-Plugin URI: http://btmatthews.com/soflair4wp
+Plugin Name: ${project.name}
+Plugin URI: http://btmatthews.com/${project.artifactId}
 Description: Display your Stack Overflow Flair on your WordPress blog
 Version: ${project.version}
 Author: Brian Matthews
@@ -25,23 +25,23 @@ License: GPLv2 or later
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-class SOFlair4WP_Widget extends WP_Widget
+class SEFlair4WP_Widget extends WP_Widget
 {
 	function __construct()
 	{
 		parent::__construct(
-			'SOFlair4WP',
-			'Stack Overflow Flair',
-			array('description' => __('Display your Stack Overflow Flair on your WordPress blog', 'textdomain'))
+			'SEFlair4WP',
+			'Stack Exchange Flair',
+			array('description' => __('Display your Stack Exchange Flair on your WordPress blog', 'textdomain'))
 		);
 	}
 	
 	function widget($args, $instance)
 	{
   		extract($args); 
-		$soflair4wp_userid = apply_filters('soflair4wp_userid', get_option('soflair4wp_userid'));
-		$soflair4wp_username = apply_filters('soflair4wp_username', get_option('soflair4wp_username'));
-		$soflair4wp_theme = apply_filters('soflair4wp_theme', $instance['theme']);
+		$seflair4wp_userid = apply_filters('seflair4wp_userid', get_option('seflair4wp_userid'));
+		$seflair4wp_username = apply_filters('seflair4wp_username', get_option('seflair4wp_username'));
+		$seflair4wp_theme = apply_filters('seflair4wp_theme', $instance['theme']);
 		echo $before_widget;
 		include(WP_PLUGIN_DIR . '/${project.artifactId}/view/widget.php');
    		echo $after_widget;
@@ -58,36 +58,36 @@ class SOFlair4WP_Widget extends WP_Widget
 	{
 		if (isset($instance['theme']))
 		{
-			$soflair4wp_theme = $instance['theme'];
+			$seflair4wp_theme = $instance['theme'];
 		}
 		else
 		{
-			$soflair4wp_theme = 'default';
+			$seflair4wp_theme = 'default';
 		}
 		include(WP_PLUGIN_DIR . '/${project.artifactId}/view/form.php');
 	}
 }
 
-function SOFlair4WP_register_settings()
+function SEFlair4WP_register_settings()
 {
-	register_setting('SOFlair4WP', 'soflair4wp_userid');
-	register_setting('SOFlair4WP', 'soflair4wp_username');	
+	register_setting('SEFlair4WP', 'seflair4wp_userid');
+	register_setting('SEFlair4WP', 'seflair4wp_username');
 }
 
-function SOFlair4WP_create_menu()
+function SEFlair4WP_create_menu()
 {
-	add_options_page('Stack Overflow Flair Settings', 'Stack Overflow Flair', 'manage_options', 'SOFlair4WP', 'SOFlair4WP_settings_page');
+	add_options_page('Stack Exchange Flair Settings', 'Stack Exchange Flair', 'manage_options', 'SEFlair4WP', 'SEFlair4WP_settings_page');
 }
 
-function SOFlair4WP_settings_page()
+function SEFlair4WP_settings_page()
 {
 	include(WP_PLUGIN_DIR . '/${project.artifactId}/view/admin.php');	
 }
 
-add_action('widgets_init', create_function('', 'register_widget("SOFlair4WP_Widget");'));
+add_action('widgets_init', create_function('', 'register_widget("SEFlair4WP_Widget");'));
 if (is_admin())
 {
-	add_action('admin_init', 'SOFlair4WP_register_settings');
-	add_action('admin_menu', 'SOFlair4WP_create_menu');
+	add_action('admin_init', 'SEFlair4WP_register_settings');
+	add_action('admin_menu', 'SEFlair4WP_create_menu');
 }
 ?>

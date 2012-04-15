@@ -12,10 +12,10 @@
 		<artifactId>wordpress-plugins</artifactId>
 		<version>1.0.0</version>
 	</parent>
-	<artifactId>stack-overflow-flair-for-wordpress</artifactId>
-	<version>1.0.1</version>
+	<artifactId>stack-exchange-flair-for-wordpress</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Stack Overflow Flair for Wordpress</name>
+	<name>Stack Exchange Flair for Wordpress</name>
 	<properties>
 		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
  	</properties>
