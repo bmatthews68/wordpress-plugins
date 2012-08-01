@@ -17,6 +17,7 @@
 	<modules>
 		<module>stack-overflow-flair-for-wordpress</module>
 		<module>stack-exchange-flair-for-wordpress</module>
+		<module>ohloh-flair-for-wordpress</module>
 	</modules>
 
 </project>
